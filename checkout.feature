@@ -18,12 +18,13 @@ Funcionalidade: Cadastro no checkout
     Quando tento cadastrar sem preencher os campos obrigatórios
     Então deve exibir uma mensagem de alerta
 
-  Esquema do Cenário: Cadastro com diferentes dados
-    Quando preencho os campos obrigatórios com "<nome>", "<email>", "<endereco>"
-    Então o sistema deve validar os dados e permitir ou negar o cadastro
+ Esquema do Cenário: Validar cadastro com diferentes dados
+  Dado que estou na tela de checkout
+  Quando eu preencher os campos obrigatórios com <nome>, <email>, <telefone>
+  Então o sistema deve exibir <mensagem>
 
-    Exemplos:
-      | nome        | email               | endereco          |
-      | João Silva  | joao@email.com      | Rua A, 123        |
-      | Maria Souza | maria.souza@teste   | Rua B, 456        |
-      | Pedro Lima  | pedro@email.com     | Rua C, 789        |
+  Exemplos:
+    | nome        | email              | telefone     | mensagem                                |
+    | João Silva  | joao@email.com     | 999999999    | Cadastro realizado com sucesso          |
+    | Maria Souza | maria#email.com    | 888888888    | Mensagem de erro: e-mail inválido       |
+    | Pedro Lima  | pedro@email.com    |              | Mensagem de alerta: campos obrigatórios |
